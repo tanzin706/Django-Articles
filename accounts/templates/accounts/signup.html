@@ -1,0 +1,12 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<h1>SignUp Page</h1>
+<form class ='site-form'action="/accounts/signup"method='post'>
+    {{form}}
+    <input type="submit" value='signup'>
+
+</form>
+
+{% endblock %}
