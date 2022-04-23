@@ -3,7 +3,19 @@
 {% block content %}
 
 <div class="article-detail">
+    
+
     <div class="art">
+        <nav>
+            <ul>
+                <li>
+                    <form class="logout-link" action="{% url 'articles:detail' slug=art.slug %}" method="post">
+                        {%csrf_token%}
+                        <button type="submit">delete</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
         <img src="{{ art.thumb.url }}"/>
         <h2>{{art.title}}</h2>
         <p>{{art.body}}</p>

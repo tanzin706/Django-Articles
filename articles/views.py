@@ -13,11 +13,17 @@ def article_list(request):
 def article_detail(request, slug):
     #return HttpResponse(slug)
     #return render(request, '')
-    article = Article.objects.get(slug=slug)
-    return render(request, 'articles/article_detail.html',{'art':article })
+    if request.method == 'POST':
+        article = Article.objects.get(slug=slug)
+        article.delete()
+        return redirect('articles:list')
+    else:
+        article = Article.objects.get(slug=slug)
+        return render(request, 'articles/article_detail.html',{'art':article })
+
+
+
 @login_required(login_url='/accounts/login/')
-
-
 def article_create(request):
     if request.method == 'POST':
         form = forms.CreateArticle(request.POST,request.FILES)
